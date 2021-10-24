@@ -2,27 +2,23 @@ import java.util.Vector
 
 fun main(args: Array<String>){
 
-    var vector = Vector<String>()
+    var arrayTitulo: Array<String?> = arrayOfNulls(9)
 
-    vector.setSize(3)
 
-    vector.addElement("1")
-    println(vector)
-    vector.addElement("2")
-    println(vector)
-    vector.addElement("3")
-    println(vector)
-    vector.addElement("4")
-    println(vector)
+    println("uiosehgisuoegr")
 
-    if (vector.equals(4))
-    {
-        println("estooo")
-    }
-    else
-    {
-        println("bruh")
-    }
+    var titulo = readLine().toString()
+
+
+
+    arrayTitulo[0] = titulo
+    arrayTitulo[1] = "gdrgdrgdrgdr"
+    arrayTitulo[2] = "fthjftjftj"
+
+
+    println(arrayTitulo[0])
+
+
 
 
 
