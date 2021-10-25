@@ -1,9 +1,16 @@
 var arrayTitulo: Array<String?> = arrayOfNulls(9)
 var arrayAutor: Array<String?> = arrayOfNulls(9)
-var arrayNumpag: Array<Int> = arrayOf(9)
-var arrayCalificacion: Array<Int> = arrayOf(9)
+var arrayNumpag: IntArray = IntArray(9)
+var arrayCalificacion: IntArray = IntArray(9)
 
 
+var z : Int = 0
+var y: Int = 0
+var checkArray: Int = 0
+
+fun findIndex(arr: IntArray, item: Int): Int {
+    return arr.indexOf(item)
+}
 
 class Libro(var titulo: String, var autor: String, var numeroPaginas: Int, var calificacion: Int){
     fun modificarTitulo(){
@@ -36,10 +43,8 @@ class ConjuntoLibros() {
 
         var continuar: Boolean = true
         var continuar2: Boolean = true
-        var checkArray: Int = 0
         var calificacion: Int = 0
 
-        var x : Int = 0
 
 
         while (continuar==true){
@@ -62,18 +67,19 @@ class ConjuntoLibros() {
                 while (continuar2==true) {
                     calificacion = readLine()?.toInt()!!
                     if (calificacion in 0..10){
-                        continuar==false
+                        continuar2=false
+                        continuar=false
                     }
                     else{
                         println("Parámetro incorrecto. Solo puedes introducir un número entre 0 y 10")
                     }
                 }
 
-                arrayTitulo[x] = titulo
-                arrayAutor[x] = autor
-                arrayNumpag[x] = numpag
-                arrayCalificacion[x] = calificacion
-                    x++
+                arrayTitulo[z] = titulo
+                arrayAutor[z] = autor
+                arrayNumpag[z] = numpag
+                arrayCalificacion[z] = calificacion
+                    z++
                 checkArray++
 
 
@@ -86,24 +92,79 @@ class ConjuntoLibros() {
     fun eliminarLibro(){
         //por titulo o autor
     }
-    fun mayorCalificacion(){}
-    fun menorCalificacion(){}
+    fun mayorCalificacion()
+    {
+        var arrayCalificacionCHECK: IntArray = arrayCalificacion
+
+        var largest = 0
+        var aaa = 0
+
+
+        while (aaa != 9) {
+            largest = 0
+            for (num in arrayCalificacionCHECK) {
+                if (largest < num)
+                    largest = num
+            }
+
+
+            var posicion = findIndex(arrayCalificacionCHECK, largest)
+
+            print(arrayTitulo[posicion])
+            print(" con una nota de ")
+            print(arrayCalificacionCHECK[posicion])
+            println("")
+
+            arrayCalificacionCHECK[posicion] = 0
+            aaa++
+
+        }
+
+        }
+    fun menorCalificacion()
+    {
+        var arrayCalificacionCHECK: IntArray = arrayCalificacion
+
+        var shortest = 0
+        var aaa = 0
+
+
+        while (aaa != 9) {
+            shortest = 0
+            for (num in arrayCalificacionCHECK) {
+                if (shortest > num)
+                    shortest = num
+            }
+
+
+            var posicion = findIndex(arrayCalificacionCHECK, shortest)
+
+            print(arrayTitulo[posicion])
+            print(" con una nota de ")
+            print(arrayCalificacionCHECK[posicion])
+            println("")
+
+            arrayCalificacionCHECK[posicion] = 0
+            aaa++
+
+        }
+    }
     fun mostrarConjunto(){
 
         var continuar : Boolean = true
-        var x: Int = 0
 
         while (continuar==true)
         {
-            println("//Quitar este comentario")
-            print(arrayTitulo[x] + ",")
-            print(arrayAutor[x] + ",")
-            print(arrayNumpag[x])
-            print(",")
-            print(arrayCalificacion[x])
-            x++
+            try {
+            println("")
+            print(arrayTitulo[y] + "," + arrayAutor[y] + "," + arrayNumpag[y] + (",") + arrayCalificacion[y])
+            y++
+            }
+            catch(e: java.lang.ArrayIndexOutOfBoundsException){
+                continuar=false
+            }
 
-            if (x==9)
+            if (y==9)
             {
                 continuar = false
             }
@@ -122,7 +183,10 @@ fun main(){
 
     println("Empieza el programa")
     conjuntolibros.añadirLibro()
-    conjuntolibros.mostrarConjunto()
+    println("")
+    conjuntolibros.añadirLibro()
+    //conjuntolibros.mostrarConjunto()
+    conjuntolibros.menorCalificacion()
 
 }
 

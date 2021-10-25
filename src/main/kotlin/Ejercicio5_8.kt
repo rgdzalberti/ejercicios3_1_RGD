@@ -23,12 +23,12 @@ fun main() {
 
     try {
         minutos = readLine()?.toInt()!!
-        }
+    }
     catch (e: java.lang.NumberFormatException) {
-            tiempo1 = Tiempo(hora)
-            println(tiempo1)
-            continuar = false
-        }
+        tiempo1 = Tiempo(hora)
+        println(tiempo1)
+        continuar = false
+    }
 
     if (continuar==true){
         print("Segundos: ")
@@ -49,5 +49,4 @@ fun main() {
     }
 
 
-    }
-
+}

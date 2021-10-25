@@ -1,5 +1,9 @@
 
-class Coche(var color: String, var marca: String,var modelo: String,var caballos: Int,var puertas: Int,var matricula: String, ){
+class Coche(var color: String, var marca: String, modelo: String,var caballos: Int,var puertas: Int,var matricula: String, ){
+    var modelo : String = modelo.uppercase()
+    set(value){
+        field = value.uppercase()
+    }
 
     override fun toString(): String {
         return "Coche $marca $modelo de color $color y $puertas puertas tiene $caballos caballos y $matricula de matricula"
