@@ -14,24 +14,144 @@ fun findIndex(arr: IntArray, item: Int): Int {
 
 class Libro(var titulo: String, var autor: String, var numeroPaginas: Int, var calificacion: Int){
     fun modificarTitulo(){
-        titulo = readLine().toString()
+
+        println("")
+        println("¿De que libro quieres cambiar el título? (Introduce el número identificador a la izquierda del título)")
+
+        var continuar: Boolean = true
+        var x: Int = 0
+        var identificador: Int = 0
+
+        println("")
+
+        while (continuar==true){
+
+            while (x!=9){
+                print(x)
+                print(" ")
+                print(arrayTitulo[x] + ", escrito por ")
+                print(arrayAutor[x] + " con ")
+                print(arrayNumpag[x])
+                print(" páginas y de nota ")
+                print(arrayCalificacion[x])
+                x++
+                println("")
+
+            }
+
+            identificador = readLine()?.toInt()!!
+            println("Introduce el nuevo autor")
+            arrayTitulo[identificador] = readLine().toString()
+            continuar=false
+
+        }
+
     }
     fun modificarAutor(){
-        autor = readLine().toString()
+        println("")
+        println("¿De que libro quieres cambiar el autor? (Introduce el número identificador a la izquierda del título)")
+
+        var continuar: Boolean = true
+        var x: Int = 0
+        var identificador: Int = 0
+
+        println("")
+
+        while (continuar==true){
+
+            while (x!=9){
+                print(x)
+                print(" ")
+                print(arrayTitulo[x] + ", escrito por ")
+                print(arrayAutor[x] + " con ")
+                print(arrayNumpag[x])
+                print(" páginas y de nota ")
+                print(arrayCalificacion[x])
+                x++
+                println("")
+
+            }
+
+            identificador = readLine()?.toInt()!!
+            println("Introduce el nuevo autor")
+            arrayAutor[identificador] = readLine().toString()
+            continuar=false
+
+        }
     }
     fun modificarNumeroPaginas(){
-        numeroPaginas = readLine()?.toInt()!!
+        println("")
+        println("¿De que libro quieres cambiar el número de páginas? (Introduce el número identificador a la izquierda del título)")
+
+        var continuar: Boolean = true
+        var x: Int = 0
+        var identificador: Int = 0
+
+        println("")
+
+        while (continuar==true){
+
+            while (x!=9){
+                print(x)
+                print(" ")
+                print(arrayTitulo[x] + ", escrito por ")
+                print(arrayAutor[x] + " con ")
+                print(arrayNumpag[x])
+                print(" páginas y de nota ")
+                print(arrayCalificacion[x])
+                x++
+                println("")
+
+            }
+
+            identificador = readLine()?.toInt()!!
+            println("Introduce el nuevo número de páginas")
+            arrayNumpag[identificador] = readLine()?.toInt()!!
+            continuar=false
+
+        }
     }
     fun modificarCalificacion(){
+
+
+        println("")
+        println("¿De que libro quieres cambiar el la calificación? (Introduce el número identificador a la izquierda del título)")
+
         var continuar: Boolean = true
-        while (continuar==true) {
-            calificacion = readLine()?.toInt()!!
-            if (calificacion in 0..10){
-                continuar==false
+        var continuar2: Boolean = true
+        var x: Int = 0
+        var identificador: Int = 0
+
+        println("")
+
+        while (continuar==true){
+
+            while (x!=9){
+                print(x)
+                print(" ")
+                print(arrayTitulo[x] + ", escrito por ")
+                print(arrayAutor[x] + " con ")
+                print(arrayNumpag[x])
+                print(" páginas y de nota ")
+                print(arrayCalificacion[x])
+                x++
+                println("")
+
             }
-            else{
-                println("Parámetro incorrecto. Solo puedes introducir un número entre 0 y 10")
+
+            identificador = readLine()?.toInt()!!
+            println("Introduce la nueva calificación")
+            while (continuar==true) {
+                arrayCalificacion[identificador] = readLine()?.toInt()!!
+                if (arrayCalificacion[identificador] in 0..10){
+                    continuar2==false
+                    continuar=false
+                }
+                else{
+                    println("Parámetro incorrecto. Solo puedes introducir un número entre 0 y 10")
+                }
             }
+
         }
 
     }
@@ -90,7 +210,39 @@ class ConjuntoLibros() {
 
     }
     fun eliminarLibro(){
-        //por titulo o autor
+
+        println("")
+        println("¿Que libro quieres eliminar? (Introduce el número identificador a la izquierda del título)")
+
+        var continuar: Boolean = true
+        var x: Int = 0
+        var identificador: Int = 0
+
+        println("")
+
+        while (continuar==true) {
+
+            while (x != 9) {
+                print(x)
+                print(" ")
+                print(arrayTitulo[x] + ", escrito por ")
+                print(arrayAutor[x] + " con ")
+                print(arrayNumpag[x])
+                print(" páginas y de nota ")
+                print(arrayNumpag[x])
+                x++
+                println("")
+
+            }
+
+            identificador = readLine()?.toInt()!!
+            arrayTitulo[identificador] = null
+            arrayAutor[identificador] = null
+            arrayNumpag[identificador] = 0
+            arrayCalificacion[identificador] = 0
+            println("Libro eliminado")
+            continuar = false
+        }
     }
     fun mayorCalificacion()
     {
@@ -157,7 +309,7 @@ class ConjuntoLibros() {
         {
             try {
             println("")
-            print(arrayTitulo[y] + "," + arrayAutor[y] + "," + arrayNumpag[y] + (",") + arrayCalificacion[y])
+            print(arrayTitulo[y] + ", escrito por " + arrayAutor[y] + " con " + arrayNumpag[y] + (" páginas y una nota de ") + arrayCalificacion[y])
             y++
             }
             catch(e: java.lang.ArrayIndexOutOfBoundsException){
@@ -181,14 +333,21 @@ fun main(){
     var libro2 = Libro("Mein Kampf","Hitler",501, 6)
     var conjuntolibros = ConjuntoLibros()
 
-    println("Empieza el programa")
+    //Crear dos libros (Los he hecho con inputs)
     conjuntolibros.añadirLibro()
-    println("")
     conjuntolibros.añadirLibro()
-    //conjuntolibros.mostrarConjunto()
-    conjuntolibros.menorCalificacion()
+
+    conjuntolibros.eliminarLibro()
+    conjuntolibros.eliminarLibro()
+
+    conjuntolibros.añadirLibro()
+    conjuntolibros.mostrarConjunto()
+
+
+
 
 }
+
 
 /*
 Posteriormente, crear una clase ConjuntoLibros, que almacena un conjunto de libros (con un vector de un tamaño fijo).
