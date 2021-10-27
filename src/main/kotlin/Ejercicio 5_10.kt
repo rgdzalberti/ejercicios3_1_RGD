@@ -209,39 +209,49 @@ class ConjuntoLibros() {
         }
 
     }
-    fun eliminarLibro(){
+    fun eliminarLibro() {
 
         println("")
-        println("¿Que libro quieres eliminar? (Introduce el número identificador a la izquierda del título)")
+        println("¿Que libro quieres eliminar? (Introduce el autor o titulo)")
 
-        var continuar: Boolean = true
-        var x: Int = 0
-        var identificador: Int = 0
+        var data = readLine().toString()
+        var continuar1 = true
+        var continuar2 = true
+        var contador = 0
+        var contador2 = 0
 
-        println("")
 
-        while (continuar==true) {
+        while (continuar1 == true) {
 
-            while (x != 9) {
-                print(x)
-                print(" ")
-                print(arrayTitulo[x] + ", escrito por ")
-                print(arrayAutor[x] + " con ")
-                print(arrayNumpag[x])
-                print(" páginas y de nota ")
-                print(arrayNumpag[x])
-                x++
-                println("")
+            try {
+                if (data.uppercase() == arrayTitulo[contador]?.uppercase()) {
+                    arrayTitulo[contador] = null
+                    println("Libro eliminado")
+                    continuar1 = false
+                } else {
+                    contador++
+                }
+            } catch (e: java.lang.ArrayIndexOutOfBoundsException) {
+                continuar1 = false
+            }
+        }
 
+        if (continuar1 == false) {
+            while (continuar2 == true) {
+                try {
+                    if (data.uppercase() == arrayAutor[contador2]?.uppercase()) {
+                        arrayAutor[contador2] = null
+                        println("Libro eliminado")
+                        continuar2 = false
+                    } else {
+                        contador2++
+                    }
+                } catch (e: java.lang.ArrayIndexOutOfBoundsException) {
+                    continuar2 = false
+                }
             }
 
-            identificador = readLine()?.toInt()!!
-            arrayTitulo[identificador] = null
-            arrayAutor[identificador] = null
-            arrayNumpag[identificador] = 0
-            arrayCalificacion[identificador] = 0
-            println("Libro eliminado")
-            continuar = false
+
         }
     }
     fun mayorCalificacion()
@@ -262,13 +272,16 @@ class ConjuntoLibros() {
 
             var posicion = findIndex(arrayCalificacionCHECK, largest)
 
-            print(arrayTitulo[posicion])
-            print(" con una nota de ")
-            print(arrayCalificacionCHECK[posicion])
-            println("")
+            if (arrayTitulo[posicion] != null && arrayCalificacion[posicion] != 0) {
 
-            arrayCalificacionCHECK[posicion] = 0
-            aaa++
+                print(arrayTitulo[posicion])
+                print(" con una nota de ")
+                print(arrayCalificacionCHECK[posicion])
+                println("")
+
+                arrayCalificacionCHECK[posicion] = 0
+                aaa++
+            }
 
         }
 
@@ -291,13 +304,16 @@ class ConjuntoLibros() {
 
             var posicion = findIndex(arrayCalificacionCHECK, shortest)
 
-            print(arrayTitulo[posicion])
-            print(" con una nota de ")
-            print(arrayCalificacionCHECK[posicion])
-            println("")
+            if (arrayTitulo[posicion] != null && arrayCalificacion[posicion] != 0) {
 
-            arrayCalificacionCHECK[posicion] = 0
-            aaa++
+                print(arrayTitulo[posicion])
+                print(" con una nota de ")
+                print(arrayCalificacionCHECK[posicion])
+                println("")
+
+                arrayCalificacionCHECK[posicion] = 0
+                aaa++
+            }
 
         }
     }
@@ -307,13 +323,19 @@ class ConjuntoLibros() {
 
         while (continuar==true)
         {
-            try {
-            println("")
-            print(arrayTitulo[y] + ", escrito por " + arrayAutor[y] + " con " + arrayNumpag[y] + (" páginas y una nota de ") + arrayCalificacion[y])
-            y++
+            if (arrayTitulo[y] != null && arrayAutor[y] != null) {
+                try {
+
+                    println("")
+                    print(arrayTitulo[y] + ", escrito por " + arrayAutor[y] + " con " + arrayNumpag[y] + (" páginas y una nota de ") + arrayCalificacion[y])
+                    y++
+                } catch (e: java.lang.ArrayIndexOutOfBoundsException) {
+                    continuar = false
+                }
             }
-            catch(e: java.lang.ArrayIndexOutOfBoundsException){
-                continuar=false
+            else
+            {
+                y++
             }
 
             if (y==9)
@@ -335,26 +357,21 @@ fun main(){
 
     //Crear dos libros (Los he hecho con inputs)
     conjuntolibros.añadirLibro()
-    conjuntolibros.añadirLibro()
+    println("")
+    //conjuntolibros.añadirLibro()
 
+    conjuntolibros.menorCalificacion()
+    /*
     conjuntolibros.eliminarLibro()
     conjuntolibros.eliminarLibro()
 
     conjuntolibros.añadirLibro()
     conjuntolibros.mostrarConjunto()
 
+     */
+
 
 
 
 }
 
-
-/*
-Posteriormente, crear una clase ConjuntoLibros, que almacena un conjunto de libros (con un vector de un tamaño fijo).
-Se pueden añadir libros que no existan (siempre que haya espacio), eliminar libros por título o autor, mostrar por pantalla los libros con la mayor
-y menor calificación y, por último, mostrar un contenido de todo el conjunto.
-
-En el programa principal realizar las siguientes operaciones: crear dos libros, añadirlos al conjunto, eliminarlos por los dos criterios (título y autor)
-hasta que el conjunto esté vacío, volver a añadir un libro y mostrar el contenido final.
-
- */
