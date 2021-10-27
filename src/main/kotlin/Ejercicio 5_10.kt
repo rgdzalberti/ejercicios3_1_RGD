@@ -358,17 +358,16 @@ fun main(){
     //Crear dos libros (Los he hecho con inputs)
     conjuntolibros.añadirLibro()
     println("")
-    //conjuntolibros.añadirLibro()
+    conjuntolibros.añadirLibro()
 
-    conjuntolibros.menorCalificacion()
-    /*
+    
     conjuntolibros.eliminarLibro()
     conjuntolibros.eliminarLibro()
 
     conjuntolibros.añadirLibro()
     conjuntolibros.mostrarConjunto()
 
-     */
+     
 
 
 
